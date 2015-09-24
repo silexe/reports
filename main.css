@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web|Poiret+One|Fjalla+One);
+
+.copyright__text {
+    float: right;
+    font-size: 10px;
+    color:#efefef;
+}
+
+.copyright__text a {
+    color:#efefef;
+}
+
+body {
+    background: url("http://img06.deviantart.net/a7d3/i/2006/083/a/2/carbon_fiber_by_joni78.png");
+    font-family: 'Titillium Web', sans-serif;
+    color: #efefef;
+}
+
+.container {
+    background: rgb(255,255,255);
+    color: #000;
+    border-radius: 15px;
+    margin-top: 50px;
+}
+
+.page-header h1{
+    font-family: 'Fjalla One', sans-serif;
+}
+
+pre {
+    font-family: 'Poiret One', cursive;
+    color:#000;
+}
