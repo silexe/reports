@@ -46,8 +46,28 @@ var jq = $.noConflict();
 				var respondo = line.substring(24, end);
 				return respondo;
 			}
+
+			$scope.read = function(){
+				$scope.pull($scope.name + ".js");
+			}
+			$scope.pull = function(filename) {
+				$.ajax({
+		            url: 'https://sam-ess.com/v/reports/saved_reports/' + filename,
+		            type: 'GET',
+		            jsonpCallback: 'reports',
+		            dataType: 'jsonp',
+		            error: function(xhr, status, error) {
+		                alert("error");
+		            },
+		            success: function(json) {
+		                alert(json.queries[1].title);
+		            }
+		        });
+			}
 			$scope.post = function() {
-				$scope.cleand = encodeURI($scope.file);
+			
+
+				/*$scope.cleand = encodeURI($scope.file);
 				$scope.data = 'fname=' + $scope.name + '&fdata=' + $scope.cleand + '&io=write';
 				$http.post('/v/reports/zfile.asp', $scope.data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
 					then(function(response){
@@ -70,42 +90,6 @@ var jq = $.noConflict();
 					}, function(response) {	
 						$scope.warning = 'Server error: ' + response.status + response.statusText;
 						$scope.err2 = true;
-					})
-			}
-			$scope.read = function() {
-				$scope.data = 'fname=' + $scope.name + '&io=read';
-				$http.post('/v/reports/zfile.asp', $scope.data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).
-					then(function(response){
-						$scope.datas = response.data.indexOf("<success>");
-						$scope.datae = response.data.indexOf("<error>");
-						if($scope.datas > -1 ){
-							if(response.data.indexOf("undefined") > -1){
-								$scope.warning = 'File was empty';
-								$scope.res = false;
-								$scope.err2 = true;
-							} else {
-								$scope.end = response.data.indexOf("</success>");
-								$scope.poopy = response.data.substring($scope.datas+9,$scope.end);
-								$scope.file = $scope.poopy;
-								$scope.display = $scope.file;
-												console.log($scope.prefile);
-								$scope.prefile = $scope.cleanprefile($scope.file); /*<--- clean the loaded file and load into prefile */
-								console.log($scope.prefile);
-								$scope.success = "File loaded";
-								$scope.yay = true;
-								$scope.res = true;
-							}
-						}else if($scope.datae > -1) {
-							$scope.end = response.data.indexOf("</error>");
-							$scope.poopy = response.data.substring($scope.datae+7,$scope.end);
-							$scope.warning = '	' + $scope.poopy;
-							$scope.err2 = true;
-						}else {
-							$scope.display = "You done goofed"
-						}
-					}, function(response) {
-						$scope.warning = '     Server error: ' + response.status + ' -- ' + response.statusText;
-						$scope.err2 = true;
-					})
+					})*/
 			}
 		}]);
